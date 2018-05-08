@@ -4,8 +4,12 @@ import { NgModule } from '@angular/core';
 import { AngularFireModule, FirebaseAppConfig } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 
+//Custom Components
 import { AppComponent } from './app.component';
 import { EventsComponent } from './events/events.component';
+
+//Services
+import { EventsService } from './services/events.service';
 
 const CONFIG: FirebaseAppConfig = {
   apiKey: "AIzaSyBQ3CkNjymk8df5zdJ0vY7_6Z8OjPM2lHg",
@@ -26,7 +30,9 @@ const CONFIG: FirebaseAppConfig = {
     AngularFireModule.initializeApp(CONFIG),
     AngularFireDatabaseModule
   ],
-  providers: [],
+  providers: [
+    EventsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

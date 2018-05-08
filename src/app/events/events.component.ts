@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireDatabase } from 'angularfire2/database'
+import { EventsService } from '../services/events.service';
 
 @Component({
   selector: 'app-events',
@@ -8,12 +8,13 @@ import { AngularFireDatabase } from 'angularfire2/database'
 })
 export class EventsComponent implements OnInit {
 
-  events$; // on crée la variable events$
+  events$;
 
-  constructor(private afDb: AngularFireDatabase) { }
+  constructor(private eventsService : EventsService) {}
 
   ngOnInit() {
-    this.events$ = this.afDb.list('events').valueChanges(); // le $ dit que c'est une variable qui contient un observable
+    this.events$ = this.eventsService.getEvent()
   }
+
 
 }
