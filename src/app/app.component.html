@@ -1,3 +1,8 @@
 <h1>{{title}}</h1>
-<app-events></app-events>
+
+<app-logs></app-logs>
+
+
+<app-create-log (create) = "onLogCreated($event)"></app-create-log> <!-- (create) est un nouvel eventEmitter et "onLogCreated" est un eventHandler-->
+
 

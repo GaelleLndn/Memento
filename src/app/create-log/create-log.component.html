@@ -1,0 +1,12 @@
+<div>
+  <form [formGroup]="myForm" (ngSubmit)="createLog()">
+    <input type="text" formControlName="date" placeholder="jj/mm/aaaa">
+    <input type="text" formControlName="category" placeholder="Catégorie">
+    <textarea formControlName="log" cols="30" rows="10" placeholder="Évènement"></textarea>
+    <button>Ajouter l'évènement</button><br>
+  </form>
+</div>
+
+<div>
+  {{ myForm.value | json }}
+</div>
