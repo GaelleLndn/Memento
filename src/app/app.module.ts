@@ -4,11 +4,14 @@ import { NgModule } from '@angular/core';
 import { AngularFireModule, FirebaseAppConfig } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router'
 
 //Custom Components
 import { AppComponent } from './app.component';
 import { LogsComponent } from './logs/logs.component';
 import { CreateLogComponent } from './create-log/create-log.component';
+import { LogDetailsComponent } from './log-details/log-details.component';
+
 
 //Services
 import { LogsService } from './services/logs.service';
@@ -22,18 +25,26 @@ const CONFIG: FirebaseAppConfig = {
   messagingSenderId: "472280656031"
 };
 
+const ROUTES: Routes = [
+  { path: '', pathMatch: 'full', component: LogsComponent },
+  { path: 'log/:id', component: LogDetailsComponent },
+  { path: 'admin', component: CreateLogComponent}
+];
+
 @NgModule({
   declarations: [
     AppComponent,
     LogsComponent,
     CreateLogComponent,
+    LogDetailsComponent,
   ],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(CONFIG),
     AngularFireDatabaseModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule.forRoot(ROUTES)
   ],
   providers: [
     LogsService
