@@ -11,7 +11,6 @@ export class AppComponent {
   
   constructor (private logsService: LogsService) {}
 
-
   onLogCreated(log){
     console.log ('log retrieved', log)
     let addedLog = this.logsService.createLog({
