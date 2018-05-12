@@ -9,13 +9,13 @@ import { RouterModule, Routes } from '@angular/router'
 //Custom Components
 import { AppComponent } from './app.component';
 import { LogsComponent } from './logs/logs.component';
-import { CreateLogComponent } from './create-log/create-log.component';
-import { LogDetailsComponent } from './log-details/log-details.component';
 import { BackendLogsComponent } from './backend/backend-logs/backend-logs.component';
 import { BackendHomeComponent } from './backend/backend-home/backend-home.component';
 
 //Services
 import { LogsService } from './services/logs.service';
+import { CreateLogComponent } from './backend/create-log/create-log.component';
+import { LogDetailsComponent } from './log-details/log-details.component';
 
 
 

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { LogsService } from '../../services/logs.service';
+import  { AngularFireAction, AngularFireDatabase } from 'angularfire2/database'
+
 
 @Component({
   selector: 'app-backend-logs',
@@ -7,9 +10,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BackendLogsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private logsService: LogsService) { }
+  logs$ // variable qui contient l'observable
+
 
   ngOnInit() {
+    this.logs$ = this.logsService.getLogs(); // observable
   }
 
+  showLogDetails(log){
+  }
+
+  deleteLog(log){
+    console.log ('delete log', log)
+    this.logsService.deleteLogById(log.key)
+  }
+
+  toggleToEditMode(log){
+    this.logsService.editLog(log)
+
+  }
 }

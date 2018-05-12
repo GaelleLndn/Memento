@@ -1,3 +1,5 @@
 <h2>Administration</h2>
 
-<app-create-log (create) = "onLogCreated($event)"></app-create-log> <!--(create) est un nouvel eventEmitter et "onLogCreated" est un eventHandler -->
+<app-create-log (create) = "onLogCreated($event)" (update) = "onLogUpdated($event)"></app-create-log> <!--(create) est un nouvel eventEmitter et "onLogCreated" est un eventHandler -->
+
+<app-backend-logs></app-backend-logs>

@@ -20,6 +20,16 @@ export class BackendHomeComponent implements OnInit {
     console.log ('addedLog', addedLog);
   }
 
+  onLogUpdated(log){
+    console.log ('log depuis la methode onLogUpdated du parent backend-home', log);
+    this.logsService.updateLog({
+      date: log.value.date,
+      category: log.value.category,
+      title: log.value.log,
+      key: log.value.key
+    })
+  }
+
   ngOnInit() {
   }
 

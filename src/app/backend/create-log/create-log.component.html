@@ -1,9 +1,10 @@
 <div>
-  <form [formGroup]="myForm" (ngSubmit)="createLog()">
+  <form [formGroup]="myForm" (ngSubmit)="saveLog()">
     <input type="date" formControlName="date" placeholder="jj/mm/aaaa"><br>
     <input type="text" formControlName="category" placeholder="Catégorie"><br>
     <textarea formControlName="log" cols="30" rows="10" placeholder="Évènement"></textarea><br>
-    <button>Ajouter l'évènement</button><br>
+    <button>{{verb}} l'événement</button>
+    <button *ngIf = "isInEditMode" (click) = "cancelEdit()">Annuler la modification</button>
   </form>
 </div>
 
