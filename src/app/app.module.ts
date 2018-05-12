@@ -11,12 +11,13 @@ import { AppComponent } from './app.component';
 import { LogsComponent } from './logs/logs.component';
 import { CreateLogComponent } from './create-log/create-log.component';
 import { LogDetailsComponent } from './log-details/log-details.component';
-
+import { BackendLogsComponent } from './backend/backend-logs/backend-logs.component';
+import { BackendHomeComponent } from './backend/backend-home/backend-home.component';
 
 //Services
 import { LogsService } from './services/logs.service';
-import { BackendHomeComponent } from './backend/backend-home/backend-home.component';
-import { BackendLogsComponent } from './backend/backend-logs/backend-logs.component';
+
+
 
 const CONFIG: FirebaseAppConfig = {
   apiKey: "AIzaSyBQ3CkNjymk8df5zdJ0vY7_6Z8OjPM2lHg",
@@ -30,7 +31,7 @@ const CONFIG: FirebaseAppConfig = {
 const ROUTES: Routes = [
   { path: '', pathMatch: 'full', component: LogsComponent },
   { path: 'log/:id', component: LogDetailsComponent },
-  { path: 'admin', component: CreateLogComponent}
+  { path: 'admin', component: BackendHomeComponent}
 ];
 
 @NgModule({
