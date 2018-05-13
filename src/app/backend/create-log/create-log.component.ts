@@ -13,6 +13,7 @@ import { Log } from '../../../log.interface' //Créer une interface permet de ty
 export class CreateLogComponent implements OnInit {
 
   myForm: FormGroup;
+  private active: boolean = true;
 
   @Output()
   create = new EventEmitter();
@@ -63,6 +64,8 @@ export class CreateLogComponent implements OnInit {
       this.isInEditMode = !this.isInEditMode;
     }
     this.myForm.reset();
+    this.active = false;
+    setTimeout(() => this.active = true, 0); // détruit et recrée le formulaire juste après sa soumission pour remettre son état à 'untouched'
     this.verb = 'Ajouter';
   }
 

@@ -1,13 +1,24 @@
-<div>
-  <form [formGroup]="myForm" (ngSubmit)="saveLog()">
-    <input type="date" formControlName="date" placeholder="jj/mm/aaaa"><br>
-    <input type="text" formControlName="category" placeholder="Catégorie"><br>
-    <textarea formControlName="log" cols="30" rows="10" placeholder="Évènement"></textarea><br>
-    <button>{{verb}} l'événement</button>
-    <button *ngIf = "isInEditMode" (click) = "cancelEdit()">Annuler la modification</button>
-  </form>
-</div>
+<mat-card style="margin: 30px">
+  <form [formGroup]="myForm" (ngSubmit)="saveLog()" *ngIf="active">
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" type="date" formControlName="date" placeholder="Date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field><br>
 
-<div>
-  {{ myForm.value | json }}
-</div>
+      <mat-form-field>
+        <input matInput type="text" formControlName="category" placeholder="Catégorie"><br>
+      </mat-form-field><br>
+
+      <mat-form-field>
+        <textarea matInput formControlName="log" cols="30" rows="1" placeholder="Évènement"></textarea><br>
+      </mat-form-field><br>
+    
+    <button mat-raised-button color="primary">{{verb}}</button>
+    <button mat-raised-button color="primary" *ngIf = "isInEditMode" (click) = "cancelEdit()">Annuler</button>
+  </form>
+</mat-card>
+{{ myForm.value | json}}
+
+
+

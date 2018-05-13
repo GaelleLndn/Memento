@@ -1,6 +1,9 @@
 <ul>
   <li *ngFor="let log of logs$ | async" (click)="showLogDetails(log)">
-    <button (click) = "toggleToEditMode(log)">Modiifer</button>
-    <button (click)= "deleteLog(log)">Supprimer</button><br>
-    {{log.title}}</li> <!-- async permet de s'abonner à un observable et de se desabonner automatiquement-->
+    <mat-card>
+        {{log.title}}<br>
+      <button mat-button color="primary" (click) = "toggleToEditMode(log)">Modif.</button>
+      <button mat-button color="warn" (click)= "deleteLog(log)">Suppr.</button>
+    </mat-card>
+  </li> <!-- async permet de s'abonner à un observable et de se desabonner automatiquement-->
 </ul>

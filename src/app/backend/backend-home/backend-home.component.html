@@ -1,5 +1,15 @@
-<h2>Administration</h2>
+<mat-toolbar color ="primary">
+    <span>Ajouter/Modifier</span>
+</mat-toolbar>
 
-<app-create-log (create) = "onLogCreated($event)" (update) = "onLogUpdated($event)"></app-create-log> <!--(create) est un nouvel eventEmitter et "onLogCreated" est un eventHandler -->
+<a mat-raised-button color="accent" routerLink = "/">Overview</a>
 
-<app-backend-logs></app-backend-logs>
+
+<mat-tab-group>
+    <mat-tab label = "Ajouter">
+        <app-create-log (create) = "onLogCreated($event)" (update) = "onLogUpdated($event)"></app-create-log> <!--(create) est un nouvel eventEmitter et "onLogCreated" est un eventHandler -->
+    </mat-tab>
+    <mat-tab label = "Modifier">
+        <app-backend-logs></app-backend-logs>
+    </mat-tab>
+</mat-tab-group>

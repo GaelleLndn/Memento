@@ -1,3 +1,13 @@
+<mat-toolbar color ="accent">
+  <h2>Overview</h2>
+</mat-toolbar>
+
+<a mat-raised-button color="primary" routerLink ="/admin">Ajouter/Modifier</a>
+
 <ul>
-  <li *ngFor="let log of logs$ | async" (click)="showLogDetails(log)">{{log.title}}</li> <!-- async permet de s'abonner à un observable et de se desabonner automatiquement-->
+    <li *ngFor="let log of logs$ | async" (click)="showLogDetails(log)">
+        <mat-card>
+          {{log.title}}
+        </mat-card>
+    </li> <!-- async permet de s'abonner à un observable et de se desabonner automatiquement-->
 </ul>
