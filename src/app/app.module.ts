@@ -1,10 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+//Firebase
 import { AngularFireModule, FirebaseAppConfig } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router'
+
+// Material Design
+import { MaterialModule } from './material.module';
 
 //Custom Components
 import { AppComponent } from './app.component';
@@ -49,7 +56,9 @@ const ROUTES: Routes = [
     AngularFireDatabaseModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(ROUTES)
+    RouterModule.forRoot(ROUTES),
+    MaterialModule,
+    BrowserAnimationsModule
   ],
   providers: [
     LogsService
