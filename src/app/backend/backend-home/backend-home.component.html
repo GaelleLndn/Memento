@@ -8,6 +8,7 @@
 <mat-tab-group>
     <mat-tab label = "Ajouter">
         <app-create-log (create) = "onLogCreated($event)" (update) = "onLogUpdated($event)"></app-create-log> <!--(create) est un nouvel eventEmitter et "onLogCreated" est un eventHandler -->
+        <app-backend-logs></app-backend-logs>
     </mat-tab>
     <mat-tab label = "Modifier">
         <app-backend-logs></app-backend-logs>

@@ -1,9 +1,9 @@
 <mat-card style="margin: 30px">
   <form [formGroup]="myForm" (ngSubmit)="saveLog()" *ngIf="active">
       <mat-form-field>
-        <input matInput [matDatepicker]="picker" type="date" formControlName="date" placeholder="Date">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
+        <input matInput [matDatepicker]="myDatepicker">
+        <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+        <mat-datepicker #myDatepicker></mat-datepicker>
       </mat-form-field><br>
 
       <mat-form-field>
