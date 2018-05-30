@@ -38,6 +38,4 @@ export class LogsService {
     //ici 'log' fait référence à la version modifiée du log (qui a été émit par le composant enfant) qui a été rendue disponible en tant q 'event de l'ouput parametter grace à l'eventEmitter 'update' créré dans backend-home.component.html
   }
 
-  
-
 }

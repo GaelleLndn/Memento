@@ -1,9 +1,9 @@
 <mat-card style="margin: 30px">
   <form [formGroup]="myForm" (ngSubmit)="saveLog()" *ngIf="active">
       <mat-form-field>
-        <input matInput [matDatepicker]="myDatepicker">
-        <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
-        <mat-datepicker #myDatepicker></mat-datepicker>
+        <input matInput [matDatepicker]="myDate" type="text" formControlName="date" placeholder="Date">
+        <mat-datepicker-toggle matSuffix [for]="myDate"></mat-datepicker-toggle>
+        <mat-datepicker #myDate></mat-datepicker>
       </mat-form-field><br>
 
       <mat-form-field>
@@ -19,6 +19,4 @@
   </form>
 </mat-card>
 {{ myForm.value | json}}
-
-
 

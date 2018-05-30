@@ -19,6 +19,6 @@ export class LogsComponent implements OnInit {
 
   showLogDetails(log){
     this.router.navigate(['/log', log.key])
-  }
 
+  }
 }

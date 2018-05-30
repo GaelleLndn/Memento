@@ -23,6 +23,7 @@ import { BackendHomeComponent } from './backend/backend-home/backend-home.compon
 import { LogsService } from './services/logs.service';
 import { CreateLogComponent } from './backend/create-log/create-log.component';
 import { LogDetailsComponent } from './log-details/log-details.component';
+import { MAT_DATE_LOCALE } from '@angular/material';
 
 
 
@@ -61,7 +62,10 @@ const ROUTES: Routes = [
     BrowserAnimationsModule
   ],
   providers: [
-    LogsService
+    LogsService,
+   
+      {provide: MAT_DATE_LOCALE, useValue: 'fr-FR'},
+
   ],
   bootstrap: [AppComponent]
 })

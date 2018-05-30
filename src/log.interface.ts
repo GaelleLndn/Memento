@@ -1,6 +1,6 @@
 export interface Log {
     key: string;
-    date: string;
-    category;
+    date: any;
+    category: string;
     title: string;
   }

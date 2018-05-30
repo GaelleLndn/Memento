@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { LogsService } from '../../services/logs.service';
 
-import { Log } from '../../../log.interface' //Créer une interface permet de type Log
+import { Log } from '../../../log.interface' //Créer une interface permet de typer Log
 
 
 @Component({
@@ -27,8 +27,10 @@ export class CreateLogComponent implements OnInit {
   constructor( private FormBuilder: FormBuilder, private LogsService: LogsService) { }
 
   ngOnInit() {
+    var today = new Date;
+    console.log('today', today)
     this.myForm = this.FormBuilder.group({
-      date: [''],
+      date: [today.toISOString()],
       category: ['Sans catégorie', Validators.required],
       log : ['', Validators.required],
       key: ['']
