@@ -18,6 +18,7 @@ import { AppComponent } from './app.component';
 import { LogsComponent } from './logs/logs.component';
 import { BackendLogsComponent } from './backend/backend-logs/backend-logs.component';
 import { BackendHomeComponent } from './backend/backend-home/backend-home.component';
+import { CategoriesComponent } from './categories/categories.component';
 
 //Services
 import { LogsService } from './services/logs.service';
@@ -39,7 +40,8 @@ const CONFIG: FirebaseAppConfig = {
 const ROUTES: Routes = [
   { path: '', pathMatch: 'full', component: LogsComponent },
   { path: 'log/:id', component: LogDetailsComponent },
-  { path: 'admin', component: BackendHomeComponent}
+  { path: 'admin', component: BackendHomeComponent},
+  { path: 'categories', component: CategoriesComponent }
 ];
 
 @NgModule({
@@ -50,6 +52,7 @@ const ROUTES: Routes = [
     LogDetailsComponent,
     BackendHomeComponent,
     BackendLogsComponent,
+    CategoriesComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +62,8 @@ const ROUTES: Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(ROUTES),
     MaterialModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    CategoriesComponent
   ],
   providers: [
     LogsService,

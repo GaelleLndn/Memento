@@ -10,10 +10,13 @@ export class LogsService {
 
   subject = new Subject();
 
-  constructor(private afdb: AngularFireDatabase) {}
+  constructor(private afdb: AngularFireDatabase) {} // injection de dépendance ( initialiser un objet à partir d'une classe = instancier) afdb est l'instance (ou classe/objet) d'angularfireDatabase . Il possède des méthode, comme la méthode ".list"
 
+
+  // .:: LOGS ::.
   getLogs(){
-    //return this.logs$ = this.afDb.list('Logs').valueChanges();  le $ dit que c'est une variable qui contient un observable
+    //return this.logs$ = this.afDb.list('Logs').valueChanges();  le $ dit que c'est une variable qui contient un observable (un flux de données qui arrive de manière asynchrone: le tableau de résultat se met à jour au fur et à mesure des changements)
+    //
     return this.afdb.list('Logs')
       .snapshotChanges()
       .map(logs => logs.map(log => ({ 
@@ -22,7 +25,7 @@ export class LogsService {
   }
 
   createLog(log){
-   return this.afdb.list('Logs').push(log); // 'Logs' fait référence au nom de la BDD
+   return this.afdb.list('Logs').push(log); // 'Logs' fait référence au noeud "Logs" de la BDD
   }
 
   deleteLogById(id: string){
@@ -37,5 +40,25 @@ export class LogsService {
     return this.afdb.object(`Logs/${log.key}`).update(log); //on veut descendre le chemin vers un log particulier du noeud 'Logs' de la DB via son ID
     //ici 'log' fait référence à la version modifiée du log (qui a été émit par le composant enfant) qui a été rendue disponible en tant q 'event de l'ouput parametter grace à l'eventEmitter 'update' créré dans backend-home.component.html
   }
+
+
+
+  // .:: CATEGORIES ::.
+  getCategories(){
+    return this.afdb.list('Categories')
+      .snapshotChanges()
+      .map(categories => categories.map(category => ({ 
+        key : category.key, ...category.payload.val()
+      }))); 
+  }
+
+  createCategory(category){
+   return this.afdb.list('Categories').push(category);
+  }
+
+  deleteCategoryById(id: string){
+    return this.afdb.list('Categories').remove(id);
+  }
+
 
 }

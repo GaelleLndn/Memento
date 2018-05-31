@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class LogsComponent implements OnInit {
 
-  logs$;
+  logs$; // le $ dit que c'est une variable qui contient un observable (un flux de données qui arrive de manière asynchrone: le tableau de résultat se met à jour au fur et à mesure des changements)
 
   constructor(private logsService : LogsService, private router: Router) {}
 
