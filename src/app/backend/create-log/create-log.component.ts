@@ -14,6 +14,8 @@ export class CreateLogComponent implements OnInit {
 
   myForm: FormGroup;
   private active: boolean = true;
+  
+  categorie; //behaviorSubject
 
   @Output()
   create = new EventEmitter();
@@ -28,12 +30,13 @@ export class CreateLogComponent implements OnInit {
 
   ngOnInit() {
     var today = new Date;
-    console.log('today', today)
+    this.LogsService.currentCat.subscribe(categorie => this.categorie = categorie)
+    
     this.myForm = this.FormBuilder.group({
       date: [today.toISOString()],
-      category: ['Sans catégorie', Validators.required],
       log : ['', Validators.required],
-      key: ['']
+      key: [''],
+      category: [this.categorie, Validators.required] // behaviorSubject
     })
 
 
@@ -50,7 +53,13 @@ export class CreateLogComponent implements OnInit {
       this.myForm.get('log').patchValue((data as Log).title);
       this.myForm.get('key').patchValue((data as Log).key);
     })
+
+    
+
+
   }
+
+
   saveLog(){
     console.log('myForm Validation', this.myForm.valid)
     if (!this.myForm.valid) {

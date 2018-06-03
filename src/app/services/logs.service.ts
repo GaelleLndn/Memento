@@ -2,7 +2,7 @@
 
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { Subject } from 'rxjs/subject'; // capable d'émettre des infos et capable d'en écouter . on l'utilise quand 2 composant de même niveau ont besoin de communiquer l'un aavec l'autre
+import { Subject, BehaviorSubject } from 'rxjs'; // capable d'émettre des infos et capable d'en écouter . on l'utilise quand 2 composant de même niveau ont besoin de communiquer l'un aavec l'autre
 
 
 @Injectable()
@@ -10,6 +10,13 @@ export class LogsService {
 
   subject = new Subject();
   subjectCat = new Subject();
+
+   //behaviorSubject
+  catByDefault = new BehaviorSubject('behaviorSubject Sans catégorie');
+  currentCat = this.catByDefault.asObservable();
+
+
+
 
   constructor(private afdb: AngularFireDatabase) {} // injection de dépendance ( initialiser un objet à partir d'une classe = instancier) afdb est l'instance (ou classe/objet) d'angularfireDatabase . Il possède des méthode, comme la méthode ".list"
 
@@ -68,6 +75,11 @@ export class LogsService {
    // "object" indique qu'on veut atteindre un élément précis de la "list"
    // "update" est une méthode de l'objet, propre à angularfire
     return this.afdb.object(`Categories/${categorie.key}`).update(categorie);
+ }
+
+  //behaviorSubject
+ changeCat(categorie){
+  this.catByDefault.next(categorie)
  }
 
 }

@@ -11,6 +11,7 @@ import { Category } from '../../../category.interface';
 })
 export class CreateCategoryComponent implements OnInit {
   formCat: FormGroup;
+  categorie; //behaviorSubject
 
   @Output()
   createCat = new EventEmitter();
@@ -36,7 +37,17 @@ export class CreateCategoryComponent implements OnInit {
       this.formCat.get('labelCat').patchValue((data as Category).labelCat);
       this.formCat.get('key').patchValue((data as Category).key)
     })  
+
+    this.logsService.currentCat.subscribe(categorie => this.categorie = categorie)  //behaviorSubject
+
   }
+
+ //behaviorSubject
+  newCategorie() {
+    this.logsService.changeCat("Hello from Sibling")
+  }
+
+
   saveCategory(){
     console.log('form valid', this.formCat.valid);
     if(!this.formCat.valid) {
