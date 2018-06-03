@@ -9,14 +9,13 @@ import { Subject } from 'rxjs/subject'; // capable d'émettre des infos et capab
 export class LogsService {
 
   subject = new Subject();
+  subjectCat = new Subject();
 
   constructor(private afdb: AngularFireDatabase) {} // injection de dépendance ( initialiser un objet à partir d'une classe = instancier) afdb est l'instance (ou classe/objet) d'angularfireDatabase . Il possède des méthode, comme la méthode ".list"
 
 
   // .:: LOGS ::.
   getLogs(){
-    //return this.logs$ = this.afDb.list('Logs').valueChanges();  le $ dit que c'est une variable qui contient un observable (un flux de données qui arrive de manière asynchrone: le tableau de résultat se met à jour au fur et à mesure des changements)
-    //
     return this.afdb.list('Logs')
       .snapshotChanges()
       .map(logs => logs.map(log => ({ 
@@ -53,12 +52,22 @@ export class LogsService {
   }
 
   createCategory(category){
-   return this.afdb.list('Categories').push(category);
+    return this.afdb.list('Categories').push(category);
   }
 
   deleteCategoryById(id: string){
     return this.afdb.list('Categories').remove(id);
   }
 
+  editCategory(categorie){
+    this.subjectCat.next(categorie)
+  }
+
+
+  updateCategory(categorie){
+   // "object" indique qu'on veut atteindre un élément précis de la "list"
+   // "update" est une méthode de l'objet, propre à angularfire
+    return this.afdb.object(`Categories/${categorie.key}`).update(categorie);
+ }
 
 }

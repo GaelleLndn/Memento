@@ -1,4 +1,4 @@
-export interface Interface {
+export interface Category {
     key: string;
-    label: string;
+    labelCat: string;
   }

@@ -1,0 +1,9 @@
+<div>
+  <form [formGroup]="formCat" (ngSubmit)="saveCategory()">
+    <input type="text" formControlName="labelCat" placeholder="Nouvelle catégorie">
+    <button>{{verb}}</button>
+    <button *ngIf="isInEditMode" (click)="cancelEditCat()">Annuler</button>
+    
+  </form>
+  <div>{{formCat.value | json}}</div>
+</div>

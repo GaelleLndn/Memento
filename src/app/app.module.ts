@@ -15,15 +15,21 @@ import { MaterialModule } from './material.module';
 
 //Custom Components
 import { AppComponent } from './app.component';
+
 import { LogsComponent } from './logs/logs.component';
-import { BackendLogsComponent } from './backend/backend-logs/backend-logs.component';
+import { LogDetailsComponent } from './log-details/log-details.component';
+import { CreateLogComponent } from './backend/create-log/create-log.component';
 import { BackendHomeComponent } from './backend/backend-home/backend-home.component';
+import { BackendLogsComponent } from './backend/backend-logs/backend-logs.component';
+
 import { CategoriesComponent } from './categories/categories.component';
+import { CategoryDetailsComponent } from './category-details/category-details.component';
+import { CreateCategoryComponent } from './backendcat/create-category/create-category.component';
+import { BackendcatHomeComponent } from './backendcat/backendcat-home/backendcat-home.component';
+import { BackendcatCategoriesComponent } from './backendcat/backendcat-categories/backendcat-categories.component';
 
 //Services
 import { LogsService } from './services/logs.service';
-import { CreateLogComponent } from './backend/create-log/create-log.component';
-import { LogDetailsComponent } from './log-details/log-details.component';
 import { MAT_DATE_LOCALE } from '@angular/material';
 
 
@@ -41,7 +47,9 @@ const ROUTES: Routes = [
   { path: '', pathMatch: 'full', component: LogsComponent },
   { path: 'log/:id', component: LogDetailsComponent },
   { path: 'admin', component: BackendHomeComponent},
-  { path: 'categories', component: CategoriesComponent }
+  { path: 'categories', component: CategoriesComponent },
+  { path: 'categorie/:id', component: CategoryDetailsComponent },
+  { path: 'admincat', component: BackendcatHomeComponent}
 ];
 
 @NgModule({
@@ -52,7 +60,11 @@ const ROUTES: Routes = [
     LogDetailsComponent,
     BackendHomeComponent,
     BackendLogsComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    CreateCategoryComponent,
+    CategoryDetailsComponent,
+    BackendcatHomeComponent,
+    BackendcatCategoriesComponent
   ],
   imports: [
     BrowserModule,
@@ -62,14 +74,12 @@ const ROUTES: Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(ROUTES),
     MaterialModule,
-    BrowserAnimationsModule,
-    CategoriesComponent
+    BrowserAnimationsModule
   ],
   providers: [
     LogsService,
-   
-      {provide: MAT_DATE_LOCALE, useValue: 'fr-FR'},
-
+    { provide: MAT_DATE_LOCALE, 
+      useValue: 'fr-FR' },
   ],
   bootstrap: [AppComponent]
 })
