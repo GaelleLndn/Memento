@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { LogsService } from '../../services/logs.service';
 
 @Component({
-  selector: 'app-backend-home',
-  templateUrl: './backend-home.component.html',
-  styleUrls: ['./backend-home.component.css']
+  selector: 'app-add-log',
+  templateUrl: './add-log.component.html',
+  styleUrls: ['./add-log.component.css']
 })
-export class BackendHomeComponent implements OnInit {
+export class AddLogComponent implements OnInit {
 
   constructor (private logsService: LogsService) {}
 
@@ -21,7 +21,7 @@ export class BackendHomeComponent implements OnInit {
   }
 
   onLogUpdated(log){
-    console.log ('log depuis la methode onLogUpdated du parent backend-home', log);
+    console.log ('log depuis la methode onLogUpdated du parent add-log', log);
     this.logsService.updateLog({
       date: log.value.date,
       category: log.value.category,

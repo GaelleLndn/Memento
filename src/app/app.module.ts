@@ -16,11 +16,12 @@ import { MaterialModule } from './material.module';
 //Custom Components
 import { AppComponent } from './app.component';
 
-import { LogsComponent } from './logs/logs.component';
-import { LogDetailsComponent } from './log-details/log-details.component';
-import { CreateLogComponent } from './backend/create-log/create-log.component';
-import { BackendHomeComponent } from './backend/backend-home/backend-home.component';
-import { BackendLogsComponent } from './backend/backend-logs/backend-logs.component';
+import { LogComponent } from './logs/log/log.component';
+import { LogListComponent } from './logs/log-list/log-list.component';
+import { LogDetailsComponent } from './logs/log-details/log-details.component';
+import { CreateLogComponent } from './logs/create-log/create-log.component';
+import { AddLogComponent } from './logs/add-log/add-log.component';
+import { EditLogComponent } from './logs/edit-log/edit-log.component';
 
 import { CategoriesComponent } from './categories/categories.component';
 import { CategoryDetailsComponent } from './category-details/category-details.component';
@@ -44,9 +45,11 @@ const CONFIG: FirebaseAppConfig = {
 };
 
 const ROUTES: Routes = [
-  { path: '', pathMatch: 'full', component: LogsComponent },
+  { path: '', pathMatch: 'full', component: AddLogComponent },
   { path: 'log/:id', component: LogDetailsComponent },
-  { path: 'admin', component: BackendHomeComponent},
+  { path: 'ajouter', component: AddLogComponent},
+  { path: 'editer', component: EditLogComponent },
+  { path: 'liste', component: LogListComponent },
   { path: 'categories', component: CategoriesComponent },
   { path: 'categorie/:id', component: CategoryDetailsComponent },
   { path: 'admincat', component: BackendcatHomeComponent}
@@ -55,16 +58,17 @@ const ROUTES: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    LogsComponent,
+    LogListComponent,
     CreateLogComponent,
     LogDetailsComponent,
-    BackendHomeComponent,
-    BackendLogsComponent,
+    AddLogComponent,
+    EditLogComponent,
     CategoriesComponent,
     CreateCategoryComponent,
     CategoryDetailsComponent,
     BackendcatHomeComponent,
-    BackendcatCategoriesComponent
+    BackendcatCategoriesComponent,
+    LogComponent
   ],
   imports: [
     BrowserModule,
