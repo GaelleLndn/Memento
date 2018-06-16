@@ -1,20 +1,21 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router'
 
 //Firebase
 import { AngularFireModule, FirebaseAppConfig } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 
-
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule, Routes } from '@angular/router'
-
-// Material Design
+// Custom module
 import { MaterialModule } from './material.module';
+import { AppRoutingModule } from './app-routing.module';
+
 
 //Custom Components
 import { AppComponent } from './app.component';
+import { MessagesComponent } from './messages/messages.component';
 
 import { LogComponent } from './logs/log/log.component';
 import { LogListComponent } from './logs/log-list/log-list.component';
@@ -30,6 +31,7 @@ import { BackendcatHomeComponent } from './backendcat/backendcat-home/backendcat
 import { BackendcatCategoriesComponent } from './backendcat/backendcat-categories/backendcat-categories.component';
 
 //Services
+import { MessageService } from './services/message.service';
 import { LogsService } from './services/logs.service';
 import { MAT_DATE_LOCALE } from '@angular/material';
 
@@ -44,20 +46,11 @@ const CONFIG: FirebaseAppConfig = {
   messagingSenderId: "472280656031"
 };
 
-const ROUTES: Routes = [
-  { path: '', pathMatch: 'full', component: AddLogComponent },
-  { path: 'log/:id', component: LogDetailsComponent },
-  { path: 'ajouter', component: AddLogComponent},
-  { path: 'editer', component: EditLogComponent },
-  { path: 'liste', component: LogListComponent },
-  { path: 'categories', component: CategoriesComponent },
-  { path: 'categorie/:id', component: CategoryDetailsComponent },
-  { path: 'admincat', component: BackendcatHomeComponent}
-];
 
 @NgModule({
   declarations: [
     AppComponent,
+    MessagesComponent,
     LogListComponent,
     CreateLogComponent,
     LogDetailsComponent,
@@ -68,7 +61,7 @@ const ROUTES: Routes = [
     CategoryDetailsComponent,
     BackendcatHomeComponent,
     BackendcatCategoriesComponent,
-    LogComponent
+    LogComponent,
   ],
   imports: [
     BrowserModule,
@@ -76,12 +69,13 @@ const ROUTES: Routes = [
     AngularFireDatabaseModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(ROUTES),
     MaterialModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule, 
+    AppRoutingModule
   ],
   providers: [
     LogsService,
+    MessageService,
     { provide: MAT_DATE_LOCALE, 
       useValue: 'fr-FR' },
   ],
