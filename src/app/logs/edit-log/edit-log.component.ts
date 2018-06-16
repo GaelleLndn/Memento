@@ -12,14 +12,17 @@ export class EditLogComponent implements OnInit {
 
   constructor(private logsService: LogsService) { }
   logs$ // variable qui contient l'observable
-
+  logById
 
   ngOnInit() {
     this.logs$ = this.logsService.getLogs(); // observable
   }
 
   showLogDetails(log){
+    console.log ('show details', log);
+    this.logById = this.logsService.getLog(log)
   }
+  
 
   deleteLog(log){
     console.log ('delete log', log)

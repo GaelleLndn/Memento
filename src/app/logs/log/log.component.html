@@ -7,3 +7,5 @@
         </mat-card>
     </li> <!-- async permet de s'abonner à un observable et de se desabonner automatiquement-->
   </ul>
+
+  <h1>selected log : {{ (logById | async)?.title }}</h1>

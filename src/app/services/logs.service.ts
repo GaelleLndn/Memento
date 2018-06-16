@@ -30,6 +30,10 @@ export class LogsService {
       }))); // permet de récupérer toutes les métadonnées, notamment le keys
   }
 
+  getLog(log){ 
+    return this.afdb.object(`Logs/${log.key}`).valueChanges(); 
+  }
+
   createLog(log){
    return this.afdb.list('Logs').push(log); // 'Logs' fait référence au noeud "Logs" de la BDD
   }
