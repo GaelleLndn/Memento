@@ -1,2 +1,14 @@
-<router-outlet></router-outlet>
-{{ logId }}
+<h2>LOGS</h2>
+<div>
+    <h3>"{{ log.title}}"</h3>
+    <div>
+        <label>Key:</label>{{ log.key }}
+    </div>
+
+    <div>
+        <label>Titre</label>{{ log.title }}
+    </div>
+</div>
+<p>
+        <button (click)="goToLogListe()">Back</button>
+    </p>

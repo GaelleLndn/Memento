@@ -1,8 +1,10 @@
 // le service est chargé de se connecter à la BDD et de transférer les données au component
 
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireList, AngularFireObject } from 'angularfire2/database';
 import { Subject, BehaviorSubject } from 'rxjs'; // capable d'émettre des infos et capable d'en écouter . on l'utilise quand 2 composant de même niveau ont besoin de communiquer l'un aavec l'autre
+import { of } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 
 @Injectable()
@@ -14,10 +16,7 @@ export class LogsService {
    //behaviorSubject
   catByDefault = new BehaviorSubject('behaviorSubject Sans catégorie');
   currentCat = this.catByDefault.asObservable();
-
-
-
-
+ 
   constructor(private afdb: AngularFireDatabase) {} // injection de dépendance ( initialiser un objet à partir d'une classe = instancier) afdb est l'instance (ou classe/objet) d'angularfireDatabase . Il possède des méthode, comme la méthode ".list"
 
 
@@ -30,9 +29,29 @@ export class LogsService {
       }))); // permet de récupérer toutes les métadonnées, notamment le keys
   }
 
-  getLog(log){ 
-    return this.afdb.object(`Logs/${log.key}`).valueChanges(); 
+  getLog(logId){
+    return this.afdb.object(`Logs/${logId}`)
+      .valueChanges()
+      .subscribe( log =>{
+        console.log('getlog', log) 
+      
+      })
   }
+
+
+//  getLog(id){ 
+//     console.log('into getLog')
+//     return this.getLogs().pipe(
+//       map(logs => logs.find(log =>log.key === id))
+//     );
+//   }
+
+  
+
+
+  // getLog(log){ 
+  //   return this.afdb.object(`Logs/${log.key}`).valueChanges(); 
+  // }
 
   createLog(log){
    return this.afdb.list('Logs').push(log); // 'Logs' fait référence au noeud "Logs" de la BDD

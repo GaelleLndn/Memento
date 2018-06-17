@@ -1,5 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router'
+import { switchMap } from 'rxjs/operators';
+import { Component, OnInit} from '@angular/core';
+import { ActivatedRoute , Router, ParamMap } from '@angular/router';
+import { Observable } from 'rxjs';
+import { AngularFireDatabase, AngularFireList, AngularFireObject } from 'angularfire2/database';
+import { LogsService } from '../../services/logs.service';
+import { Log } from '../../../log.interface'
 
 @Component({
   selector: 'app-log-details',
@@ -8,12 +13,22 @@ import { ActivatedRoute } from '@angular/router'
 })
 export class LogDetailsComponent implements OnInit {
 
-  logId;
-  
-  constructor(private activatedRoute: ActivatedRoute) { }
+  log
+  logId
+
+  constructor(
+    private route: ActivatedRoute,
+    private router:Router,
+    private logsService: LogsService
+  ) { }
 
   ngOnInit() {
-    this.logId = this.activatedRoute.snapshot.paramMap.get('id'); // récupérer les id adns l'url
-  }
+    this.logId = this.route.snapshot.paramMap.get('id');
+    this.log = this.logsService.getLog(this.logId);    
+    console.log('init de logdetails', this.log)
 
+}
+  goToLogListe(){
+    this.router.navigate(['/liste'])
+  }
 }
