@@ -23,14 +23,6 @@ export class LogListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.logs$ = this.route.paramMap.pipe(
-    //   switchMap((params: ParamMap) => {
-    //     this.selectedKey = params.get('id');
-    //     console.log('this selectedKey de logList init', this.selectedKey)
-    //     return this.logsService.getLogs();
-    //   })
-    // );
-
     this.logs$ = this.logsService.getLogs()
   }
 

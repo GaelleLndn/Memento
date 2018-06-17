@@ -7,6 +7,7 @@ import { of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 
+
 @Injectable()
 export class LogsService {
 
@@ -32,10 +33,6 @@ export class LogsService {
   getLog(logId){
     return this.afdb.object(`Logs/${logId}`)
       .valueChanges()
-      .subscribe( log =>{
-        console.log('getlog', log) 
-      
-      })
   }
 
 

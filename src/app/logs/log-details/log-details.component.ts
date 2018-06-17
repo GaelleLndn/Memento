@@ -13,7 +13,7 @@ import { Log } from '../../../log.interface'
 })
 export class LogDetailsComponent implements OnInit {
 
-  log
+  log$
   logId
 
   constructor(
@@ -24,8 +24,7 @@ export class LogDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.logId = this.route.snapshot.paramMap.get('id');
-    this.log = this.logsService.getLog(this.logId);    
-    console.log('init de logdetails', this.log)
+    this.log$ = this.logsService.getLog(this.logId);    
 
 }
   goToLogListe(){

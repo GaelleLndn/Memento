@@ -1,9 +1,6 @@
 <h2>LOGS</h2>
-<div>
+<div *ngIf="log$ | async as log">
     <h3>"{{ log.title}}"</h3>
-    <div>
-        <label>Key:</label>{{ log.key }}
-    </div>
 
     <div>
         <label>Titre</label>{{ log.title }}
@@ -12,3 +9,4 @@
 <p>
         <button (click)="goToLogListe()">Back</button>
     </p>
+    
