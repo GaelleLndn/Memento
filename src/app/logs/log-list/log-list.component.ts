@@ -13,7 +13,9 @@ export class LogListComponent implements OnInit {
 
   constructor(private logsService : LogsService, private router: Router) {}
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.logs$ = this.logsService.getLogs()
+   }
 
   showLogDetails(log){
     this.router.navigate(['/log', log.key])
