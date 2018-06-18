@@ -4,7 +4,9 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from 'angularfire2/database';
 import { Subject, BehaviorSubject } from 'rxjs'; // capable d'émettre des infos et capable d'en écouter . on l'utilise quand 2 composant de même niveau ont besoin de communiquer l'un aavec l'autre
 import { of } from 'rxjs';
+import 'rxjs/add/operator/map';
 import { map } from 'rxjs/operators';
+import { Log } from '../../log.interface'
 
 
 
@@ -31,8 +33,11 @@ export class LogsService {
   }
 
   getLog(logId){
-    return this.afdb.object(`Logs/${logId}`)
-      .valueChanges()
+    return this.afdb.object<Log>(`Logs/${logId}`)
+    .snapshotChanges()
+      .map(log => ({ 
+        key : log.key, ...log.payload.val()
+      }))
   }
 
 
