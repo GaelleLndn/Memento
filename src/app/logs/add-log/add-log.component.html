@@ -4,7 +4,7 @@
     </mat-tab>
     <mat-tab label = "Modifier">
         <app-edit-log></app-edit-log>
-        <app-create-log (update) = "onLogUpdated($event)"></app-create-log> <!--(create) est un nouvel eventEmitter et "onLogCreated" est un eventHandler -->
+        <app-update-log (update) = "onLogUpdated($event)"></app-update-log> <!--(create) est un nouvel eventEmitter et "onLogCreated" est un eventHandler -->
 
     </mat-tab>
 </mat-tab-group>

@@ -1,5 +1,5 @@
 <mat-card style="margin: 30px">
-  <form [formGroup]="myForm" (ngSubmit)="createLog()" *ngIf="active">
+  <form [formGroup]="myForm" (ngSubmit)="updateLog()" *ngIf="active">
       <mat-form-field>
         <input matInput [matDatepicker]="myDate" type="text" formControlName="date" placeholder="Date">
         <mat-datepicker-toggle matSuffix [for]="myDate"></mat-datepicker-toggle>
@@ -14,7 +14,8 @@
         <textarea matInput formControlName="log" cols="30" rows="1" placeholder="Évènement"></textarea><br>
       </mat-form-field><br>
     
-    <button mat-raised-button color="primary">Ajouter</button>
+    <button mat-raised-button color="primary">Modifier</button>
+    <button mat-raised-button color="primary" (click) = "cancelEdit()">Annuler</button>
   </form>
 </mat-card>
 {{ myForm.value | json}}

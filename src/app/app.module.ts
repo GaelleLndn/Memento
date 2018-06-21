@@ -23,6 +23,8 @@ import { LogDetailsComponent } from './logs/log-details/log-details.component';
 import { CreateLogComponent } from './logs/create-log/create-log.component';
 import { AddLogComponent } from './logs/add-log/add-log.component';
 import { EditLogComponent } from './logs/edit-log/edit-log.component';
+import { UpdateLogComponent } from './logs/update-log/update-log.component';
+
 
 import { CategoriesComponent } from './categories/categories.component';
 import { CategoryDetailsComponent } from './category-details/category-details.component';
@@ -33,7 +35,7 @@ import { BackendcatCategoriesComponent } from './backendcat/backendcat-categorie
 //Services
 import { MessageService } from './services/message.service';
 import { LogsService } from './services/logs.service';
-import { MAT_DATE_LOCALE } from '@angular/material';
+import { MAT_DATE_LOCALE, MatIconRegistry } from '@angular/material';
 
 
 
@@ -51,17 +53,20 @@ const CONFIG: FirebaseAppConfig = {
   declarations: [
     AppComponent,
     MessagesComponent,
+    
+    LogComponent,
     LogListComponent,
     CreateLogComponent,
     LogDetailsComponent,
     AddLogComponent,
     EditLogComponent,
+    UpdateLogComponent,
+
     CategoriesComponent,
     CreateCategoryComponent,
     CategoryDetailsComponent,
     BackendcatHomeComponent,
     BackendcatCategoriesComponent,
-    LogComponent,
   ],
   imports: [
     BrowserModule,
@@ -76,9 +81,10 @@ const CONFIG: FirebaseAppConfig = {
   providers: [
     LogsService,
     MessageService,
+    MatIconRegistry,
     { provide: MAT_DATE_LOCALE, 
-      useValue: 'fr-FR' },
+      useValue: 'fr-FR' }
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

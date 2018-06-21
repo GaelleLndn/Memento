@@ -1,6 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
+ul {
+    padding-left: 0px;
+}
+
 li {
     list-style-type: none;
 }
+
+a {
+    text-decoration: none;
+}
+
