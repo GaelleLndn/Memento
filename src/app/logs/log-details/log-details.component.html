@@ -6,8 +6,10 @@
         <label>Titre</label>{{ log.title }}
         {{ log.key }}
     </div>
+    <button mat-button color="primary" (click) = "toggleToEditMode(log)">Modif.</button>
+    <button mat-button color="warn" (click)= "deleteLog(log)">Suppr.</button>
 </div>
 <p>
         <button (click)="goToLogListe()">Back</button>
     </p>
-    
+  

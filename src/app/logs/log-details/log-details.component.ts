@@ -30,4 +30,14 @@ export class LogDetailsComponent implements OnInit {
   goToLogListe(){
     this.router.navigate(['/liste'])
   }
+
+  deleteLog(log){
+    console.log ('delete log', log)
+    this.logsService.deleteLogById(log.key)
+  }
+
+  toggleToEditMode(log){
+    this.logsService.editLog(log)
+  }
+
 }

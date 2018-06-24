@@ -1,11 +1,7 @@
 
-  <ul>
-    <li *ngFor="let log of logs$ | async" (click)="showLogDetails(log)">
-        <mat-card style="margin: 30px" >
-          {{ log.title }}<br>
-          {{ log.date | date }}
-        </mat-card>
-    </li> <!-- async permet de s'abonner à un observable et de se desabonner automatiquement-->
-  </ul>
 
-  <h1>selected log : {{ (logById | async)?.title }}</h1>
+
+  <app-log-details></app-log-details>
+
+  
+  <app-update-log (update) = "onLogUpdated($event)"></app-update-log>

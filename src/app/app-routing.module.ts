@@ -12,11 +12,10 @@ import { LogComponent } from './logs/log/log.component';
 
 const ROUTES: Routes = [
     { path: '', pathMatch: 'full', component: AddLogComponent },
-    { path: 'log/:id', component: LogDetailsComponent },
+    { path: 'log/:id', component: LogComponent },
     { path: 'ajouter', component: AddLogComponent},
     { path: 'editer', component: EditLogComponent },
     { path: 'liste', component: LogListComponent },
-    { path: 'log', component: LogComponent },
 
   ];
   

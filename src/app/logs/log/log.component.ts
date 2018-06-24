@@ -17,11 +17,18 @@ export class LogComponent implements OnInit {
   constructor(private logsService : LogsService) {}
 
   ngOnInit() {
-    this.logs$ = this.logsService.getLogs()
   }
 
-  showLogDetails(log){
-    console.log ('show details', log);
-    this.logById = this.logsService.getLog(log)
+ 
+  onLogUpdated(log){
+    console.log ('log depuis la methode onLogUpdated du parent add-log', log);
+    this.logsService.updateLog({
+      date: log.value.date,
+      category: log.value.category,
+      title: log.value.log,
+      key: log.value.key
+    })
   }
+
+  
 }

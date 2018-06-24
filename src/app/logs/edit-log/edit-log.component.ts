@@ -18,10 +18,10 @@ export class EditLogComponent implements OnInit {
     this.logs$ = this.logsService.getLogs(); // observable
   }
 
-  showLogDetails(log){
-    console.log ('show details', log);
-    this.logById = this.logsService.getLog(log)
-  }
+  // showLogDetails(log){
+  //   console.log ('show details', log);
+  //   this.logById = this.logsService.getLog(log)
+  // }
   
 
   deleteLog(log){

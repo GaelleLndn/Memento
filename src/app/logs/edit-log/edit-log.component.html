@@ -1,6 +1,6 @@
 <mat-card>
   <ul>
-  <li *ngFor="let log of logs$ | async" (click)="showLogDetails(log)">
+  <li *ngFor="let log of logs$ | async">
     <mat-card>
         {{log.title}}<br>
       <button mat-button color="primary" (click) = "toggleToEditMode(log)">Modif.</button>

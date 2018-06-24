@@ -21,7 +21,6 @@ import { MatToolbarModule, MatTabsModule, MatCardModule, MatFormFieldModule, Mat
         MatFormFieldModule,
         MatInputModule,
         MatDatepickerModule,
-        MatNativeDateModule,
         MatButtonModule,
         MatIconModule,
         MatExpansionModule
