@@ -14,7 +14,7 @@ import { Observable } from 'rxjs';
 export class CreateLogComponent implements OnInit {
 
   myForm: FormGroup;
-  date = new Date
+  today = new Date;
   private active: boolean = true;
 
   cats$: Observable<Category[]>
@@ -27,12 +27,14 @@ export class CreateLogComponent implements OnInit {
 
   ngOnInit() {
     this.cats$ = this.logsService.getCategories()
-    this.date = new Date;
+    console.log ('mydate', this.today)
+
+
     this.myForm = this.FormBuilder.group({
-      date: [ this.date, Validators.required],
+      date: [ this.today , Validators.required],
       log : ['', Validators.required],
       key: [''],
-      category: ['' , Validators.required] 
+      category: ['' , Validators.required],
     })
   }
 

@@ -11,13 +11,18 @@ export class AddLogComponent implements OnInit {
   constructor (private logsService: LogsService) {}
 
   onLogCreated(log){
+    console.log ('date from onlogcreated()', log.value.date)
+
+    let createdDate = log.value.date;
+    let savedDate = createdDate.toISOString();
+
     let catval = log.value.category;
     const selectedCat={};
     for (const c of catval) {
       selectedCat[c] = true;
     }
     this.logsService.createLog({
-      date: log.value.date,
+      date: savedDate,
       category: selectedCat,
       title: log.value.log, 
     });
