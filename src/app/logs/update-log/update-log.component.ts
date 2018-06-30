@@ -1,6 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { LogsService } from '../../services/logs.service';
+import { Category } from '../../../category.interface';
+import { Observable } from 'rxjs';
 
 import { Log } from '../../../log.interface' //Créer une interface permet de typer Log
 
@@ -15,19 +17,22 @@ export class UpdateLogComponent implements OnInit {
   myForm: FormGroup;
   private active: boolean = true;
   
+  cats$: Observable<Category[]>
+
+
   @Output()
   update = new EventEmitter();
 
-  constructor( private FormBuilder: FormBuilder, private LogsService: LogsService) { }
+  constructor( private FormBuilder: FormBuilder, private logsService: LogsService) { }
 
-  ngOnInit() {
-    var today = new Date;
-      
+  ngOnInit() {      
+    this.cats$ = this.logsService.getCategories()
+
     this.myForm = this.FormBuilder.group({
-      date: [today.toISOString()],
+      date: ['', Validators.required],
       log : ['', Validators.required],
       key: [''],
-      category: ['', Validators.required] // behaviorSubject
+      category: ['', Validators.required] 
     })
 
 
@@ -35,10 +40,13 @@ export class UpdateLogComponent implements OnInit {
     // patchValue permet de pré-remplir le formulaire avec le données du log que l'on veut editer (plutôt que d'avoir à tout retaper) 
     // avec les datas récupérée par le subject.subscribe
     // 'data as Log' permet de dire que les data sont de TYPE Log, tel qu'il a été défini par log.interface.ts
-    this.LogsService.subject.subscribe(data => {
-      console.log('data', data)
+    this.logsService.subject.subscribe(data => {
+      console.log('data de update-log', data)
+     
+      let cat = (data as Log).category;
+      let catarray = Object.keys(cat)
       this.myForm.get('date').patchValue((data as Log).date);
-      this.myForm.get('category').patchValue((data as Log).category);
+      this.myForm.get('category').patchValue( catarray );
       this.myForm.get('log').patchValue((data as Log).title);
       this.myForm.get('key').patchValue((data as Log).key);
     })

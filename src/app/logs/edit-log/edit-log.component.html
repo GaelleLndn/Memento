@@ -1,4 +1,5 @@
 <mat-card>
+  edit -log
   <ul>
   <li *ngFor="let log of logs$ | async">
     <mat-card>
@@ -8,4 +9,13 @@
     </mat-card>
   </li> <!-- async permet de s'abonner à un observable et de se desabonner automatiquement-->
 </ul>
+
+
+<ul>
+  <li *ngFor="let lastThreeLog of lastThreeLogs$ | async">
+    LAST THREE:
+        {{lastThreeLog.title}}<br>
+      
+    </li> <!-- async permet de s'abonner à un observable et de se desabonner automatiquement-->
+  </ul>
 </mat-card>

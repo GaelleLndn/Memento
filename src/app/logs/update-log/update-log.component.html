@@ -7,8 +7,10 @@
       </mat-form-field><br>
 
       <mat-form-field>
-        <input matInput type="text" formControlName="category" placeholder="Catégorie"><br>
-      </mat-form-field><br>
+          <mat-select placeholder="categories" formControlName="category" multiple>
+              <mat-option *ngFor="let cat of cats$ | async" [value]="cat.key">{{ cat.labelCat }}</mat-option>
+            </mat-select>      
+          </mat-form-field><br>
 
       <mat-form-field>
         <textarea matInput formControlName="log" cols="30" rows="1" placeholder="Évènement"></textarea><br>

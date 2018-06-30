@@ -6,8 +6,8 @@ import { Subject, BehaviorSubject } from 'rxjs'; // capable d'émettre des infos
 import { of } from 'rxjs';
 import 'rxjs/add/operator/map';
 import { map } from 'rxjs/operators';
-import { Log } from '../../log.interface'
-
+import { Log } from '../../log.interface';
+import { Category } from '../../category.interface';
 
 
 @Injectable()
@@ -32,6 +32,14 @@ export class LogsService {
       }))); // permet de récupérer toutes les métadonnées, notamment le keys
   }
 
+  getLastThreeLogs(){
+    return  this.afdb.list('Logs', lastThreeLogs => lastThreeLogs.orderByChild('/title').limitToLast(3))
+      .snapshotChanges()
+      .map(logs => logs.map(threelogs => ({ 
+        key : threelogs.key, ...threelogs.payload.val()
+      })));
+  }
+
   getLog(logId){
     return this.afdb.object<Log>(`Logs/${logId}`)
     .snapshotChanges()
@@ -40,20 +48,6 @@ export class LogsService {
       }))
   }
 
-
-//  getLog(id){ 
-//     console.log('into getLog')
-//     return this.getLogs().pipe(
-//       map(logs => logs.find(log =>log.key === id))
-//     );
-//   }
-
-  
-
-
-  // getLog(log){ 
-  //   return this.afdb.object(`Logs/${log.key}`).valueChanges(); 
-  // }
 
   createLog(log){
    return this.afdb.list('Logs').push(log); // 'Logs' fait référence au noeud "Logs" de la BDD
@@ -81,6 +75,14 @@ export class LogsService {
       .map(categories => categories.map(category => ({ 
         key : category.key, ...category.payload.val()
       }))); 
+  }
+
+  getCategory(catId){
+    return this.afdb.object<Category>(`Categories/${catId}`)
+    .snapshotChanges()
+      .map(categories => ({ 
+        key : categories.key, ...categories.payload.val()
+      }))
   }
 
   createCategory(category){

@@ -1,5 +1,9 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { LogsService } from '../../services/logs.service';
+import { Category } from '../../../category.interface';
+import { Observable } from 'rxjs';
+
 
 
 @Component({
@@ -10,21 +14,25 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class CreateLogComponent implements OnInit {
 
   myForm: FormGroup;
+  date = new Date
   private active: boolean = true;
-  
+
+  cats$: Observable<Category[]>
 
   @Output()
   create = new EventEmitter();
 
-  constructor( private FormBuilder: FormBuilder) { }
+  constructor( private FormBuilder: FormBuilder, private logsService: LogsService) { }
+
 
   ngOnInit() {
-    var today = new Date;    
+    this.cats$ = this.logsService.getCategories()
+    this.date = new Date;
     this.myForm = this.FormBuilder.group({
-      date: [today.toISOString()],
+      date: [ this.date, Validators.required],
       log : ['', Validators.required],
       key: [''],
-      category: ['Sans catégorie', Validators.required] 
+      category: ['' , Validators.required] 
     })
   }
 

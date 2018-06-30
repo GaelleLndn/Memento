@@ -1,15 +1,19 @@
-<h2>LOGS</h2>
-<div *ngIf="log$ | async as log">
-    <h3>"{{ log.title}}"</h3>
+<mat-card>
+    <h2>LOGS</h2>
 
-    <div>
-        <label>Titre</label>{{ log.title }}
-        {{ log.key }}
+    <div *ngIf="log$ | async as log">
+        <h3>"{{ log.title}}"</h3>
+        <div>
+            <label>Titre</label>
+                {{ log.title }} <br>
+                {{ log.key }}
+        </div>
+        <button mat-button color="primary" (click) = "toggleToEditMode(log)">Modif.</button>
+        <button mat-button color="warn" (click)= "deleteLog(log)">Suppr.</button>
     </div>
-    <button mat-button color="primary" (click) = "toggleToEditMode(log)">Modif.</button>
-    <button mat-button color="warn" (click)= "deleteLog(log)">Suppr.</button>
-</div>
-<p>
+
+    <p>
         <button (click)="goToLogListe()">Back</button>
     </p>
-  
+
+</mat-card>

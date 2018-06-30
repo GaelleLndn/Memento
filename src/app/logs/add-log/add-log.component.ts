@@ -11,20 +11,28 @@ export class AddLogComponent implements OnInit {
   constructor (private logsService: LogsService) {}
 
   onLogCreated(log){
-    console.log ('log retrieved', log)
-    let addedLog = this.logsService.createLog({
+    let catval = log.value.category;
+    const selectedCat={};
+    for (const c of catval) {
+      selectedCat[c] = true;
+    }
+    this.logsService.createLog({
       date: log.value.date,
-      category: log.value.category,
-      title: log.value.log
+      category: selectedCat,
+      title: log.value.log, 
     });
-    console.log ('addedLog', addedLog);
   }
 
   onLogUpdated(log){
     console.log ('log depuis la methode onLogUpdated du parent add-log', log);
+    let catval = log.value.category;
+    const selectedCat={};
+    for (const c of catval) {
+      selectedCat[c] = true;
+    }
     this.logsService.updateLog({
       date: log.value.date,
-      category: log.value.category,
+      category: selectedCat,
       title: log.value.log,
       key: log.value.key
     })
