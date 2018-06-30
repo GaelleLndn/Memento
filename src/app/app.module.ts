@@ -36,6 +36,7 @@ import { BackendcatCategoriesComponent } from './backendcat/backendcat-categorie
 import { MessageService } from './services/message.service';
 import { LogsService } from './services/logs.service';
 import { MAT_DATE_LOCALE, MatIconRegistry } from '@angular/material';
+import { ReversePipe } from './reverse.pipe';
 
 
 
@@ -67,6 +68,7 @@ const CONFIG: FirebaseAppConfig = {
     CategoryDetailsComponent,
     BackendcatHomeComponent,
     BackendcatCategoriesComponent,
+    ReversePipe,
   ],
   imports: [
     BrowserModule,

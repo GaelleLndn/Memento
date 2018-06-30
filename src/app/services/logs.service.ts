@@ -2,6 +2,7 @@
 
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from 'angularfire2/database';
+import * as firebase from 'firebase';
 import { Subject, BehaviorSubject } from 'rxjs'; // capable d'émettre des infos et capable d'en écouter . on l'utilise quand 2 composant de même niveau ont besoin de communiquer l'un aavec l'autre
 import { of } from 'rxjs';
 import 'rxjs/add/operator/map';
@@ -22,6 +23,8 @@ export class LogsService {
  
   constructor(private afdb: AngularFireDatabase) {} // injection de dépendance ( initialiser un objet à partir d'une classe = instancier) afdb est l'instance (ou classe/objet) d'angularfireDatabase . Il possède des méthode, comme la méthode ".list"
 
+  getTimestamp(){return firebase.database.ServerValue.TIMESTAMP};
+
 
   // .:: LOGS ::.
   getLogs(){
@@ -33,7 +36,7 @@ export class LogsService {
   }
 
   getLastThreeLogs(){
-    return  this.afdb.list('Logs', lastThreeLogs => lastThreeLogs.orderByChild('/title').limitToLast(3))
+    return  this.afdb.list('Logs', lastThreeLogs => lastThreeLogs.orderByChild('/createdOn').limitToLast(3))
       .snapshotChanges()
       .map(logs => logs.map(threelogs => ({ 
         key : threelogs.key, ...threelogs.payload.val()

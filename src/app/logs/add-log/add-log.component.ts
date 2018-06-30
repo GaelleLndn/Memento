@@ -9,12 +9,17 @@ import { LogsService } from '../../services/logs.service';
 export class AddLogComponent implements OnInit {
 
   constructor (private logsService: LogsService) {}
+  
+  ngOnInit() {
+    
+  }
 
   onLogCreated(log){
     console.log ('date from onlogcreated()', log.value.date)
+    let createdOn: any = this.logsService.getTimestamp()
 
-    let createdDate = log.value.date;
-    let savedDate = createdDate.toISOString();
+    let logDateValue = log.value.date;
+    let logDate = logDateValue.toISOString();
 
     let catval = log.value.category;
     const selectedCat={};
@@ -22,9 +27,10 @@ export class AddLogComponent implements OnInit {
       selectedCat[c] = true;
     }
     this.logsService.createLog({
-      date: savedDate,
+      date: logDate,
       category: selectedCat,
       title: log.value.log, 
+      createdOn: createdOn
     });
   }
 
@@ -43,7 +49,6 @@ export class AddLogComponent implements OnInit {
     })
   }
 
-  ngOnInit() {
-  }
+ 
 
 }
