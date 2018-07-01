@@ -22,9 +22,15 @@ export class LogComponent implements OnInit {
  
   onLogUpdated(log){
     console.log ('log depuis la methode onLogUpdated du parent add-log', log);
+    
+    let catval = log.value.category;
+    const selectedCat={};
+    for (const c of catval) {
+      selectedCat[c] = true;
+    }
     this.logsService.updateLog({
       date: log.value.date,
-      category: log.value.category,
+      category: selectedCat,
       title: log.value.log,
       key: log.value.key
     })

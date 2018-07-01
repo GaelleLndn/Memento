@@ -18,9 +18,6 @@ export class LogDetailsComponent implements OnInit {
   logId
   log$
 
-  cats$: Observable<Category[]>
-
-
   constructor(
     private route: ActivatedRoute,
     private router:Router,

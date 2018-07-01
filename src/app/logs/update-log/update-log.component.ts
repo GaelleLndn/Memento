@@ -48,6 +48,7 @@ export class UpdateLogComponent implements OnInit {
 
       let cat = (data as Log).category;
       let catarray = Object.keys(cat)
+      
       this.myForm.get('date').patchValue((data as Log).date);
       this.myForm.get('category').patchValue( catarray );
       this.myForm.get('log').patchValue((data as Log).title);
