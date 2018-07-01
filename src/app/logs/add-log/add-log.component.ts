@@ -26,11 +26,13 @@ export class AddLogComponent implements OnInit {
     for (const c of catval) {
       selectedCat[c] = true;
     }
+
     this.logsService.createLog({
       date: logDate,
       category: selectedCat,
       title: log.value.log, 
-      createdOn: createdOn
+      createdOn: createdOn,
+      key: ''
     });
   }
 

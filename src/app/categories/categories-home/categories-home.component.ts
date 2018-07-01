@@ -15,6 +15,7 @@ export class CategoriesHomeComponent implements OnInit {
     console.log('categorie retrieved', category)
     let addedCategory = this.logsService.createCategory({
       labelCat: category.value.labelCat,
+      key: ''
     });
     console.log('addedCategory', addedCategory)
   }

@@ -57,7 +57,10 @@ export class LogsService {
   
 
   createLog(log){
-   return this.afdb.list('Logs').push(log); // 'Logs' fait référence au noeud "Logs" de la BDD
+   let itemKey = this.afdb.list('Logs').push(log).key;
+   this.afdb.object(`Logs/${itemKey}`).update({ key: itemKey })
+   
+   // 'Logs' fait référence au noeud "Logs" de la BDD
   }
 
   deleteLogById(id: string){
@@ -93,7 +96,8 @@ export class LogsService {
   }
 
   createCategory(category){
-    return this.afdb.list('Categories').push(category);
+    let catKey = this.afdb.list('Categories').push(category).key;
+    this.afdb.object(`Categories/${catKey}`).update({ key: catKey })
   }
 
   deleteCategoryById(id: string){
