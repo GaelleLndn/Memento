@@ -1,5 +1,5 @@
 <ul>
-  <li *ngFor="let categorie of categories$  | async" (click)="showCategoryDetails(categorie)">
+  <li *ngFor="let categorie of categories$  | async">
     <button (click)="toggleToEditModeCat(categorie)">modif</button>
     <button (click)="deleteCategory(categorie)">suppr</button>
     {{ categorie.labelCat }} <br>

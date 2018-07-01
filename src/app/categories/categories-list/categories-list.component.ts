@@ -4,11 +4,11 @@ import { Router } from '@angular/router';
 
 
 @Component({
-  selector: 'app-backendcat-categories',
-  templateUrl: './backendcat-categories.component.html',
-  styleUrls: ['./backendcat-categories.component.css']
+  selector: 'app-categories-list',
+  templateUrl: './categories-list.component.html',
+  styleUrls: ['./categories-list.component.css']
 })
-export class BackendcatCategoriesComponent implements OnInit {
+export class CategoriesListComponent implements OnInit {
   categories$;
 
   constructor(private logsService: LogsService, private router: Router) { }

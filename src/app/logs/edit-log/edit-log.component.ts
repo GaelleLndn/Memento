@@ -16,7 +16,6 @@ export class EditLogComponent implements OnInit {
   logById
 
   ngOnInit() {
-    this.logs$ = this.logsService.getLogs();
     this.lastThreeLogs$ = this.logsService.getLastThreeLogs()
     console.log ('three logs', this.lastThreeLogs$)
   }

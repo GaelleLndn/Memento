@@ -1,7 +1,7 @@
   
 
     <ul>
-      <li *ngFor="let log of logs$ | async">   <!-- async permet de s'abonner à un observable et de se desabonner automatiquement-->
+      <li *ngFor="let log of logs$ | async | reverse">   <!-- async permet de s'abonner à un observable et de se desabonner automatiquement-->
         
         <a [routerLink]="['/log', log.key]">
           <mat-card>

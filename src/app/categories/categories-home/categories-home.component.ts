@@ -3,11 +3,11 @@ import { LogsService } from '../../services/logs.service';
 
 
 @Component({
-  selector: 'app-backendcat-home',
-  templateUrl: './backendcat-home.component.html',
-  styleUrls: ['./backendcat-home.component.css']
+  selector: 'app-categories-home',
+  templateUrl: './categories-home.component.html',
+  styleUrls: ['./categories-home.component.css']
 })
-export class BackendcatHomeComponent implements OnInit {
+export class CategoriesHomeComponent implements OnInit {
 
   constructor (private logsService: LogsService) {}
 
@@ -20,7 +20,7 @@ export class BackendcatHomeComponent implements OnInit {
   }
 
   onCategoryUpdated(category){
-    console.log ('categorie depuis la methode onCatupdtaed du parent backendcat-home', category)
+    console.log ('categorie depuis la methode onCatupdtaed du parent categories-home', category)
     this.logsService.updateCategory({ 
       labelCat: category.value.labelCat, 
       key: category.value.key 

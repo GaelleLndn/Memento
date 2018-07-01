@@ -26,16 +26,16 @@ import { EditLogComponent } from './logs/edit-log/edit-log.component';
 import { UpdateLogComponent } from './logs/update-log/update-log.component';
 
 
-import { CategoriesComponent } from './categories/categories.component';
-import { CategoryDetailsComponent } from './category-details/category-details.component';
-import { CreateCategoryComponent } from './backendcat/create-category/create-category.component';
-import { BackendcatHomeComponent } from './backendcat/backendcat-home/backendcat-home.component';
-import { BackendcatCategoriesComponent } from './backendcat/backendcat-categories/backendcat-categories.component';
+import { CreateCategoryComponent } from './categories/create-category/create-category.component';
+import { CategoriesHomeComponent } from './categories/categories-home/categories-home.component';
+import { CategoriesListComponent } from './categories/categories-list/categories-list.component';
 
 //Services
 import { MessageService } from './services/message.service';
 import { LogsService } from './services/logs.service';
 import { MAT_DATE_LOCALE, MatIconRegistry } from '@angular/material';
+
+//Custom Pipe
 import { ReversePipe } from './reverse.pipe';
 
 
@@ -63,11 +63,10 @@ const CONFIG: FirebaseAppConfig = {
     EditLogComponent,
     UpdateLogComponent,
 
-    CategoriesComponent,
     CreateCategoryComponent,
-    CategoryDetailsComponent,
-    BackendcatHomeComponent,
-    BackendcatCategoriesComponent,
+    CategoriesHomeComponent,
+    CategoriesListComponent,
+    
     ReversePipe,
   ],
   imports: [
