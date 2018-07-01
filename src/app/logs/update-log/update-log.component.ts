@@ -19,6 +19,8 @@ export class UpdateLogComponent implements OnInit {
   
   cats$: Observable<Category[]>
 
+  isInEditMode: Boolean = false;
+
 
   @Output()
   update = new EventEmitter();
@@ -42,7 +44,8 @@ export class UpdateLogComponent implements OnInit {
     // 'data as Log' permet de dire que les data sont de TYPE Log, tel qu'il a été défini par log.interface.ts
     this.logsService.subject.subscribe(data => {
       console.log('data de update-log', data)
-     
+      this.isInEditMode = true;
+
       let cat = (data as Log).category;
       let catarray = Object.keys(cat)
       this.myForm.get('date').patchValue((data as Log).date);
@@ -61,12 +64,14 @@ export class UpdateLogComponent implements OnInit {
     }
     console.log ('Formulaire valide')
     this.update.emit(this.myForm);
+    this.isInEditMode = false
     this.myForm.reset();
     this.active = false;
     setTimeout(() => this.active = true, 0); // détruit et recrée le formulaire juste après sa soumission pour remettre son état à 'untouched'
   }
 
   cancelEdit(){
+    this.isInEditMode = false;
     this.myForm.reset();
   }
 

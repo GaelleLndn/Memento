@@ -1,8 +1,10 @@
-<ul>
-  <li *ngFor="let categorie of categories$  | async">
-    <button (click)="toggleToEditModeCat(categorie)">modif</button>
-    <button (click)="deleteCategory(categorie)">suppr</button>
-    {{ categorie.labelCat }} <br>
-    {{ categorie.key }}
-  </li>
-</ul>
+
+  <ul>
+    <li *ngFor="let categorie of categories$  | async | reverse">
+      <mat-card style="margin: 30px">
+        {{ categorie.labelCat }} <br>
+        <button mat-button color="primary" (click)="toggleToEditModeCat(categorie)">modif</button>
+        <button mat-button color="warn" (click)="deleteCategory(categorie)">suppr</button>
+      </mat-card>
+    </li>
+  </ul>

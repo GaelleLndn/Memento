@@ -42,12 +42,6 @@ export class CreateCategoryComponent implements OnInit {
 
   }
 
- //behaviorSubject
-  newCategorie() {
-    this.logsService.changeCat("Hello from Sibling")
-  }
-
-
   saveCategory(){
     console.log('form valid', this.formCat.valid);
     if(!this.formCat.valid) {

@@ -4,7 +4,9 @@ import { ActivatedRoute , Router, ParamMap } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from 'angularfire2/database';
 import { LogsService } from '../../services/logs.service';
-import { Log } from '../../../log.interface'
+import { Log } from '../../../log.interface';
+import { Category } from '../../../category.interface';
+
 
 @Component({
   selector: 'app-log-details',
@@ -12,9 +14,12 @@ import { Log } from '../../../log.interface'
   styleUrls: ['./log-details.component.css']
 })
 export class LogDetailsComponent implements OnInit {
-
-  log$
+  
   logId
+  log$
+
+  cats$: Observable<Category[]>
+
 
   constructor(
     private route: ActivatedRoute,
@@ -24,9 +29,9 @@ export class LogDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.logId = this.route.snapshot.paramMap.get('id');
-    this.log$ = this.logsService.getLog(this.logId);    
+    this.log$ = this.logsService.getLog(this.logId);
+    }
 
-}
   goToLogListe(){
     this.router.navigate(['/liste'])
   }

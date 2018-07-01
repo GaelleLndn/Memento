@@ -27,8 +27,6 @@ export class CreateLogComponent implements OnInit {
 
   ngOnInit() {
     this.cats$ = this.logsService.getCategories()
-    console.log ('mydate', this.today)
-
 
     this.myForm = this.FormBuilder.group({
       date: [ this.today , Validators.required],

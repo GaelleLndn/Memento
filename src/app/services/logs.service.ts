@@ -30,17 +30,21 @@ export class LogsService {
   getLogs(){
     return this.afdb.list('Logs')
       .snapshotChanges()
-      .map(logs => logs.map(log => ({ 
-        key : log.key, ...log.payload.val()
-      }))); // permet de récupérer toutes les métadonnées, notamment le keys
+      .map(logs => 
+        logs.map(log => ({ 
+          key : log.key, ...log.payload.val()
+        }))
+      ); // permet de récupérer toutes les métadonnées, notamment le keys
   }
 
   getLastThreeLogs(){
     return  this.afdb.list('Logs', lastThreeLogs => lastThreeLogs.orderByChild('/createdOn').limitToLast(3))
       .snapshotChanges()
-      .map(logs => logs.map(threelogs => ({ 
-        key : threelogs.key, ...threelogs.payload.val()
-      })));
+      .map(logs => 
+        logs.map(threelogs => ({ 
+          key : threelogs.key, ...threelogs.payload.val()
+        }))
+      );
   }
 
   getLog(logId){
@@ -50,7 +54,7 @@ export class LogsService {
         key : log.key, ...log.payload.val()
       }))
   }
-
+  
 
   createLog(log){
    return this.afdb.list('Logs').push(log); // 'Logs' fait référence au noeud "Logs" de la BDD

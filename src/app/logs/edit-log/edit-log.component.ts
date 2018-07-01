@@ -32,7 +32,6 @@ export class EditLogComponent implements OnInit {
   }
 
   toggleToEditMode(log){
-    this.logsService.editLog(log)
-
+    this.logsService.editLog(log);
   }
 }

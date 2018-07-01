@@ -1,19 +1,21 @@
-<mat-card>
-    <h2>LOGS</h2>
 
+<h2>LOGS</h2>
+<mat-card style="margin: 30px">
     <div *ngIf="log$ | async as log">
-        <h3>"{{ log.title}}"</h3>
-        <div>
-            <label>Titre</label>
-                {{ log.title }} <br>
-                {{ log.key }}
+
+        <h3>{{ log.title}}</h3>
+
+        <div class = "date">
+            {{ log.date | date}}<br>
+            {{ log.category | json}}
+
         </div>
         <button mat-button color="primary" (click) = "toggleToEditMode(log)">Modif.</button>
         <button mat-button color="warn" (click)= "deleteLog(log)">Suppr.</button>
     </div>
-
-    <p>
-        <button (click)="goToLogListe()">Back</button>
-    </p>
-
 </mat-card>
+<p>
+    <button (click)="goToLogListe()">Back</button>
+</p>
+
+  

@@ -1,4 +1,4 @@
-<mat-card style="margin: 30px">
+<mat-card *ngIf="isInEditMode"  style="margin: 30px">
   <form [formGroup]="myForm" (ngSubmit)="updateLog()" *ngIf="active">
       <mat-form-field>
         <input matInput [matDatepicker]="myDate" type="text" formControlName="date" placeholder="Date">
@@ -17,9 +17,9 @@
       </mat-form-field><br>
     
     <button mat-raised-button color="primary">Modifier</button>
-    <button mat-raised-button color="primary" (click) = "cancelEdit()">Annuler</button>
+    <button mat-raised-button color="default" (click) = "cancelEdit()">Annuler</button>
   </form>
 </mat-card>
-{{ myForm.value | json}}
+
 
 

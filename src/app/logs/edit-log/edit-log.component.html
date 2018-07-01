@@ -1,10 +1,11 @@
-<mat-card>
+
   <ul>
   <li *ngFor="let lastThreeLog of lastThreeLogs$ | async | reverse">
-    <mat-card>
+    <mat-card style="margin: 30px">
       {{lastThreeLog.title}}<br>
       <button mat-button color="primary" (click) = "toggleToEditMode(lastThreeLog)">Modif.</button>
       <button mat-button color="warn" (click)= "deleteLog(lastThreeLog)">Suppr.</button>
     </mat-card>
   </li> <!-- async permet de s'abonner à un observable et de se desabonner automatiquement-->
 </ul>
+
