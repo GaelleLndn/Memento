@@ -17,19 +17,17 @@ export class LogsService {
   subject = new Subject();
   subjectCat = new Subject();
 
-   //behaviorSubject
-  catByDefault = new BehaviorSubject('behaviorSubject Sans catégorie');
-  currentCat = this.catByDefault.asObservable();
  
   constructor(private afdb: AngularFireDatabase) {} // injection de dépendance ( initialiser un objet à partir d'une classe = instancier) afdb est l'instance (ou classe/objet) d'angularfireDatabase . Il possède des méthode, comme la méthode ".list"
 
   getTimestamp(){return firebase.database.ServerValue.TIMESTAMP};
 
-
+  logsRef = this.afdb.list('Logs')
+  catsRef = this.afdb.list('Categories')
+  
   // .:: LOGS ::.
   getLogs(){
-    return this.afdb.list('Logs')
-      .snapshotChanges()
+    return this.logsRef.snapshotChanges()
       .map(logs => 
         logs.map(log => ({ 
           key : log.key, ...log.payload.val()
@@ -57,14 +55,14 @@ export class LogsService {
   
 
   createLog(log){
-   let itemKey = this.afdb.list('Logs').push(log).key;
+   let itemKey = this.logsRef.push(log).key;
    this.afdb.object(`Logs/${itemKey}`).update({ key: itemKey })
    
    // 'Logs' fait référence au noeud "Logs" de la BDD
   }
 
   deleteLogById(id: string){
-    return this.afdb.list('Logs').remove(id);
+    return this.logsRef.remove(id);
   }
 
   editLog(log){
@@ -80,28 +78,33 @@ export class LogsService {
 
   // .:: CATEGORIES ::.
   getCategories(){
-    return this.afdb.list('Categories')
-      .snapshotChanges()
+    return this.catsRef.snapshotChanges()
       .map(categories => categories.map(category => ({ 
         key : category.key, ...category.payload.val()
       }))); 
   }
 
+
+  
+
   getCategory(catId){
     return this.afdb.object<Category>(`Categories/${catId}`)
     .snapshotChanges()
       .map(categories => ({ 
-        key : categories.key, ...categories.payload.val()
+        key : categories.key, 
+        ...categories.payload.val()
       }))
   }
 
+
+
   createCategory(category){
-    let catKey = this.afdb.list('Categories').push(category).key;
+    let catKey = this.catsRef.push(category).key;
     this.afdb.object(`Categories/${catKey}`).update({ key: catKey })
   }
 
   deleteCategoryById(id: string){
-    return this.afdb.list('Categories').remove(id);
+    return this.catsRef.remove(id);
   }
 
   editCategory(categorie){
@@ -115,9 +118,50 @@ export class LogsService {
     return this.afdb.object(`Categories/${categorie.key}`).update(categorie);
  }
 
-  //behaviorSubject
- changeCat(categorie){
-  this.catByDefault.next(categorie)
- }
 
-}
+// L O G S   A N D   C A T E G O R I E S
+
+  xxgetLogCats(logId) {
+    firebase.database().ref(`Logs/${logId}/category`).on('child_added', catId => {
+      this.afdb.object<Category>(`Categories/${catId.key}`).snapshotChanges()
+        .map(categories => ({ 
+          key : categories.key, 
+          ...categories.payload.val()
+        })) //Will print Category 1 and Category 2
+      });
+  }
+  xxxgetLogCats(logId) {
+    return this.afdb.object<Log>(`Logs/${logId}/category`).snapshotChanges().pipe(
+        map(catId => this.afdb.object<Category>(`Categories/${catId.key}`).snapshotChanges()
+            .map(categories => ({ 
+                key : categories.key, 
+                ...categories.payload.val()
+        })))) //Will print Category 1 and Category 2
+  };
+
+
+  getLogCats(logId){
+   return firebase.database().ref(`Logs/${logId}/category`).on('child_added', snapshot => {
+      firebase.database().ref('Categories/'+ snapshot.key).on('value', snap => {
+          console.log(snap.val().labelCat + ' belongs to product2'); //Will print Category 1 and Category 2
+        });
+      })
+  }
+      // this.afdb.object<Category>(`Categories/${catId.key}`).snapshotChanges()
+      //   .map(logCats => ({ 
+      //     key : logCats.key, 
+      //     ...logCats.payload.val()
+      //   })) 
+      // });
+
+  
+
+
+// var fb = new Firebase("https://examples-sql-queries.firebaseio.com/");
+// fb.child('user/123').once('value', function(userSnap) {
+//    fb.child('media/123').once('value', function(mediaSnap) {
+//        // extend function: https://gist.github.com/katowulf/6598238
+//        console.log( extend({}, userSnap.val(), mediaSnap.val()) );
+//    });
+// });
+}  

@@ -17,6 +17,7 @@ export class LogDetailsComponent implements OnInit {
   
   logId
   log$
+  logCats$
 
   constructor(
     private route: ActivatedRoute,
@@ -27,6 +28,7 @@ export class LogDetailsComponent implements OnInit {
   ngOnInit() {
     this.logId = this.route.snapshot.paramMap.get('id');
     this.log$ = this.logsService.getLog(this.logId);
+    this.logCats$ = this.logsService.getLogCats(this.logId)
     }
 
   goToLogListe(){
