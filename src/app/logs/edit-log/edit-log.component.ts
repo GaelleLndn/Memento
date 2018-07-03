@@ -11,23 +11,15 @@ import { LogsService } from '../../services/logs.service';
 export class EditLogComponent implements OnInit {
 
   constructor(private logsService: LogsService) { }
-  logs$ // variable qui contient l'observable
+  logs$ 
   lastThreeLogs$
   logById
 
   ngOnInit() {
     this.lastThreeLogs$ = this.logsService.getLastThreeLogs()
-    console.log ('three logs', this.lastThreeLogs$)
   }
 
-  // showLogDetails(log){
-  //   console.log ('show details', log);
-  //   this.logById = this.logsService.getLog(log)
-  // }
-  
-
   deleteLog(log){
-    console.log ('delete log', log)
     this.logsService.deleteLogById(log.key)
   }
 

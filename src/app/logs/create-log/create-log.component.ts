@@ -1,9 +1,9 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { LogsService } from '../../services/logs.service';
-import { Category } from '../../../category.interface';
 import { Observable } from 'rxjs';
 
+import { LogsService } from '../../services/logs.service';
+import { Category } from '../../../category.interface';
 
 
 @Component({
@@ -16,8 +16,7 @@ export class CreateLogComponent implements OnInit {
   myForm: FormGroup;
   today = new Date;
   private active: boolean = true;
-
-  cats$: Observable<Category[]>
+  cats$
 
   @Output()
   create = new EventEmitter();
@@ -38,12 +37,9 @@ export class CreateLogComponent implements OnInit {
 
 
   createLog(){
-    console.log('myForm Validation', this.myForm.valid)
     if (!this.myForm.valid) {
-      console.log ('Formulaire invalide')
       return
     }
-    console.log ('Formulaire valide')
     this.create.emit(this.myForm);
     this.myForm.reset();
     this.active = false;

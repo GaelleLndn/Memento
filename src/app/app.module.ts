@@ -6,7 +6,8 @@ import { RouterModule, Routes } from '@angular/router'
 
 //Firebase
 import { AngularFireModule, FirebaseAppConfig } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
+//import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 // Custom module
 import { MaterialModule } from './material.module';
@@ -72,7 +73,8 @@ const CONFIG: FirebaseAppConfig = {
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(CONFIG),
-    AngularFireDatabaseModule,
+    //AngularFireDatabaseModule,
+    AngularFirestoreModule,
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
