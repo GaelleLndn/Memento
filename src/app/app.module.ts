@@ -2,12 +2,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule, Routes } from '@angular/router'
+import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 //Firebase
 import { AngularFireModule, FirebaseAppConfig } from 'angularfire2';
 //import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AngularFirestoreModule } from 'angularfire2/firestore';
+//import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 // Custom module
 import { MaterialModule } from './material.module';
@@ -39,6 +40,8 @@ import { MAT_DATE_LOCALE, MatIconRegistry } from '@angular/material';
 //Custom Pipe
 import { ReversePipe } from './reverse.pipe';
 
+import { PostsComponent } from './posts/posts.component';
+
 
 
 const CONFIG: FirebaseAppConfig = {
@@ -69,12 +72,16 @@ const CONFIG: FirebaseAppConfig = {
     CategoriesListComponent,
     
     ReversePipe,
+    
+    PostsComponent
+
   ],
   imports: [
     BrowserModule,
-    AngularFireModule.initializeApp(CONFIG),
+    HttpClientModule,
+    //AngularFireModule.initializeApp(CONFIG),
     //AngularFireDatabaseModule,
-    AngularFirestoreModule,
+    //AngularFirestoreModule,
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,

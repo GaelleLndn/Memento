@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from 'angularfire2/firestore';
 import * as firebase from 'firebase';
 import { Subject, Observable, BehaviorSubject } from 'rxjs'; 
@@ -20,9 +21,13 @@ export class LogsService {
   subject = new Subject();
   subjectCat = new Subject();
  
-  constructor(private afs: AngularFirestore) {} 
+  constructor(private http: HttpClient) {} 
 
   getTimestamp(){return firebase.database.ServerValue.TIMESTAMP};
+
+
+
+
 
   
   // .:: LOGS ::.
